@@ -5,21 +5,19 @@ import java.time.format.DateTimeFormatter;
 
 public class SalaryInfo {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private final int arrayDate = 0;
+    private final int arrayName = 1;
+    private final int arrayHours = 2;
+    private final int arrayBid = 3;
 
     public String getSalaryInfo(String[] names, String[] data, String dateFrom, String dateTo) {
         LocalDate from = LocalDate.parse(dateFrom, formatter);
         LocalDate to = LocalDate.parse(dateTo, formatter);
         LocalDate dateFromData;
-        int bidArray = 2;
-        String salary = "";
         Long totals = 0L;
         String nameData;
         long hours = 0;
         long bid = 0;
-        int arrayDate = 0;
-        int arrayName = 1;
-        int arrayHours = 2;
-        int arrayBod = 3;
 
         StringBuilder report = new StringBuilder();
         report.append("Report for period ")
@@ -37,7 +35,7 @@ public class SalaryInfo {
                     dateFromData = LocalDate.parse(splitData[arrayDate], formatter);
                     nameData = splitData[arrayName];
                     hours = Long.parseLong(splitData[arrayHours]);
-                    bid = Long.parseLong(splitData[arrayBod]);
+                    bid = Long.parseLong(splitData[arrayBid]);
                     if (names[i].equals(nameData)
                             && (!dateFromData.isBefore(from)
                             && !dateFromData.isAfter(to))) {
